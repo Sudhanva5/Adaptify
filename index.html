@@ -37,6 +37,64 @@ body {
   overflow-x: hidden;
 }
 
+/* VIDEO INTRO */
+.video-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 2s ease;
+}
+
+.video-intro.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-intro video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-skip {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  background: rgba(255,255,255,0.1);
+  border: 0.5px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0;
+  cursor: pointer;
+  z-index: 10000;
+  transition: background 0.2s;
+}
+
+.video-skip:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+body.intro-playing {
+  overflow: hidden;
+}
+
+.site-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s ease 0.5s, transform 1.5s ease 0.5s;
+}
+
+.site-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* NOISE OVERLAY */
 body::before {
   content: '';
@@ -150,58 +208,74 @@ nav {
   display: block;
 }
 
+/* top-left */
 .hero-float-img:nth-child(1) {
-  left: -4%;
-  top: 8%;
-  width: 260px;
-  transform: rotate(-12deg);
+  left: 1%;
+  top: 3%;
+  width: 180px;
+  transform: rotate(-8deg);
   animation-delay: 0s;
-  animation-duration: 5s;
+  animation-duration: 7s;
 }
 
+/* top-right */
 .hero-float-img:nth-child(2) {
-  right: -2%;
-  top: 5%;
-  width: 240px;
-  transform: rotate(8deg);
-  animation-delay: -1s;
-  animation-duration: 5.5s;
-}
-
-.hero-float-img:nth-child(3) {
-  left: 3%;
-  bottom: 12%;
-  width: 220px;
+  right: 1%;
+  top: 3%;
+  width: 180px;
   transform: rotate(6deg);
   animation-delay: -2s;
-  animation-duration: 4.5s;
+  animation-duration: 8s;
 }
 
+/* middle-left */
+.hero-float-img:nth-child(3) {
+  left: 0%;
+  top: 38%;
+  width: 170px;
+  transform: rotate(5deg);
+  animation-delay: -4s;
+  animation-duration: 7.5s;
+}
+
+/* middle-right */
 .hero-float-img:nth-child(4) {
-  right: 1%;
-  bottom: 8%;
-  width: 250px;
-  transform: rotate(-9deg);
-  animation-delay: -3s;
-  animation-duration: 5s;
+  right: 0%;
+  top: 38%;
+  width: 170px;
+  transform: rotate(-6deg);
+  animation-delay: -5.5s;
+  animation-duration: 7s;
 }
 
+/* bottom-left */
 .hero-float-img:nth-child(5) {
-  left: 12%;
-  top: 35%;
-  width: 200px;
-  transform: rotate(14deg);
-  animation-delay: -1.5s;
-  animation-duration: 5.5s;
+  left: 2%;
+  bottom: 3%;
+  width: 180px;
+  transform: rotate(8deg);
+  animation-delay: -1s;
+  animation-duration: 8s;
 }
 
+/* bottom-right */
 .hero-float-img:nth-child(6) {
-  right: 10%;
-  top: 40%;
-  width: 210px;
+  right: 2%;
+  bottom: 3%;
+  width: 180px;
   transform: rotate(-5deg);
   animation-delay: -3.5s;
-  animation-duration: 5s;
+  animation-duration: 7.5s;
+}
+
+/* bottom-center-left */
+.hero-float-img:nth-child(7) {
+  left: 22%;
+  bottom: 2%;
+  width: 160px;
+  transform: rotate(-4deg);
+  animation-delay: -6s;
+  animation-duration: 7s;
 }
 
 @keyframes floatIn {
@@ -210,13 +284,13 @@ nav {
     transform: translateZ(-300px) scale(0.7) rotate(var(--rot, -8deg));
   }
   10% {
-    opacity: 0.12;
+    opacity: 0.18;
   }
   50% {
-    opacity: 0.1;
+    opacity: 0.15;
   }
   90% {
-    opacity: 0.12;
+    opacity: 0.18;
   }
   100% {
     opacity: 0;
@@ -323,6 +397,8 @@ h1 em {
   font-size: 15px;
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .cta-ghost:hover { color: var(--text); border-color: rgba(140,180,255,0.25); }
@@ -938,7 +1014,17 @@ footer {
 }
 </style>
 </head>
-<body>
+<body class="intro-playing">
+
+<!-- VIDEO INTRO -->
+<div class="video-intro" id="videoIntro">
+  <video id="introVideo" autoplay muted playsinline>
+    <source src="src/Demo.mp4" type="video/mp4">
+  </video>
+  <button class="video-skip" id="skipBtn">Skip →</button>
+</div>
+
+<div class="site-content" id="siteContent">
 
 <!-- NAV -->
 <nav>
@@ -956,11 +1042,12 @@ footer {
 <div class="hero">
   <div class="hero-floating">
     <div class="hero-float-img" style="--rot:-12deg"><img src="src/youtube_thumbnail_two_educato_9360b21b44b0aa1e4742875893445b2c.png" alt=""></div>
-    <div class="hero-float-img" style="--rot:8deg"><img src="src/youtube_thumbnail_two_hosts_f_bc69fc758bb761c64069321348a3b201.png" alt=""></div>
-    <div class="hero-float-img" style="--rot:6deg"><img src="src/youtube_thumbnail_two_speaker_feb2b45a3bd27325e3f229605a30c016.png" alt=""></div>
-    <div class="hero-float-img" style="--rot:-9deg"><img src="src/Prompting.png" alt=""></div>
-    <div class="hero-float-img" style="--rot:14deg"><img src="src/3 Directions.png" alt=""></div>
-    <div class="hero-float-img" style="--rot:-5deg"><img src="src/Adapts.png" alt=""></div>
+    <div class="hero-float-img" style="--rot:8deg"><img src="src/1920x1080.jpg" alt=""></div>
+    <div class="hero-float-img" style="--rot:6deg"><img src="src/genai.jpg" alt=""></div>
+    <div class="hero-float-img" style="--rot:-9deg"><img src="src/react.jpg" alt=""></div>
+    <div class="hero-float-img" style="--rot:10deg"><img src="src/llama.jpg" alt=""></div>
+    <div class="hero-float-img" style="--rot:-5deg"><img src="src/streaming.jpg" alt=""></div>
+    <div class="hero-float-img" style="--rot:-7deg"><img src="src/tableu.jpg" alt=""></div>
   </div>
 
   <div class="live-badge">
@@ -976,7 +1063,7 @@ footer {
 
   <div class="cta-group">
     <button class="cta-primary">Generate your first creative →</button>
-    <button class="cta-ghost">See how it works</button>
+    <a href="#how" class="cta-ghost">See how it works</a>
   </div>
 
   <!-- PROMPT DEMO -->
@@ -1263,5 +1350,23 @@ footer {
   <div class="footer-note">Built by Team Token Limit</div>
 </footer>
 
+</div>
+
+<script>
+  const intro = document.getElementById('videoIntro');
+  const video = document.getElementById('introVideo');
+  const skipBtn = document.getElementById('skipBtn');
+  const site = document.getElementById('siteContent');
+
+  function dismissIntro() {
+    intro.classList.add('fade-out');
+    document.body.classList.remove('intro-playing');
+    site.classList.add('visible');
+    setTimeout(() => intro.remove(), 2000);
+  }
+
+  video.addEventListener('ended', dismissIntro);
+  skipBtn.addEventListener('click', dismissIntro);
+</script>
 </body>
 </html>
