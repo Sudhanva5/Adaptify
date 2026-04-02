@@ -93,7 +93,7 @@ nav {
   color: #ffffff;
   border: none;
   padding: 0.55rem 1.4rem;
-  border-radius: 100px;
+  border-radius: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -129,6 +129,101 @@ nav {
   pointer-events: none;
 }
 
+.hero-floating {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  perspective: 800px;
+  overflow: hidden;
+}
+
+.hero-float-img {
+  position: absolute;
+  width: 280px;
+  opacity: 0;
+  border: 0.5px solid rgba(255,255,255,0.06);
+  animation: floatIn 5s linear infinite;
+}
+
+.hero-float-img img {
+  width: 100%;
+  display: block;
+}
+
+.hero-float-img:nth-child(1) {
+  left: -4%;
+  top: 8%;
+  width: 260px;
+  transform: rotate(-12deg);
+  animation-delay: 0s;
+  animation-duration: 5s;
+}
+
+.hero-float-img:nth-child(2) {
+  right: -2%;
+  top: 5%;
+  width: 240px;
+  transform: rotate(8deg);
+  animation-delay: -1s;
+  animation-duration: 5.5s;
+}
+
+.hero-float-img:nth-child(3) {
+  left: 3%;
+  bottom: 12%;
+  width: 220px;
+  transform: rotate(6deg);
+  animation-delay: -2s;
+  animation-duration: 4.5s;
+}
+
+.hero-float-img:nth-child(4) {
+  right: 1%;
+  bottom: 8%;
+  width: 250px;
+  transform: rotate(-9deg);
+  animation-delay: -3s;
+  animation-duration: 5s;
+}
+
+.hero-float-img:nth-child(5) {
+  left: 12%;
+  top: 35%;
+  width: 200px;
+  transform: rotate(14deg);
+  animation-delay: -1.5s;
+  animation-duration: 5.5s;
+}
+
+.hero-float-img:nth-child(6) {
+  right: 10%;
+  top: 40%;
+  width: 210px;
+  transform: rotate(-5deg);
+  animation-delay: -3.5s;
+  animation-duration: 5s;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateZ(-300px) scale(0.7) rotate(var(--rot, -8deg));
+  }
+  10% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  90% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 0;
+    transform: translateZ(100px) scale(1.1) rotate(var(--rot, -8deg));
+  }
+}
+
 .live-badge {
   display: inline-flex;
   align-items: center;
@@ -139,7 +234,7 @@ nav {
   font-size: 11px;
   font-weight: 500;
   padding: 0.4rem 1rem;
-  border-radius: 100px;
+  border-radius: 0;
   margin-bottom: 2.5rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -204,7 +299,7 @@ h1 em {
   color: #ffffff;
   border: none;
   padding: 0.9rem 2.2rem;
-  border-radius: 100px;
+  border-radius: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 15px;
   font-weight: 500;
@@ -223,7 +318,7 @@ h1 em {
   color: var(--muted2);
   border: 0.5px solid var(--border2);
   padding: 0.9rem 2.2rem;
-  border-radius: 100px;
+  border-radius: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 15px;
   cursor: pointer;
@@ -243,7 +338,7 @@ h1 em {
 .prompt-window {
   background: var(--bg2);
   border: 0.5px solid var(--border2);
-  border-radius: 16px;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -317,7 +412,7 @@ h1 em {
 .creative-card {
   background: var(--bg3);
   border: 0.5px solid var(--border);
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
   transition: border-color 0.2s;
 }
@@ -357,7 +452,7 @@ h1 em {
 .creative-select-btn {
   font-size: 11px;
   padding: 4px 10px;
-  border-radius: 100px;
+  border-radius: 0;
   border: 0.5px solid var(--border2);
   background: transparent;
   color: var(--muted2);
@@ -376,11 +471,13 @@ h1 em {
 .stat-bar {
   border-top: 0.5px solid var(--border);
   border-bottom: 0.5px solid var(--border);
-  padding: 2.5rem 3rem;
+  padding: 3.5rem 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0;
+  background: var(--bg2);
+  box-shadow: inset 0 1px 0 rgba(74,158,255,0.06), inset 0 -1px 0 rgba(74,158,255,0.06);
 }
 
 .stat {
@@ -393,15 +490,16 @@ h1 em {
 
 .stat-number {
   font-family: 'Source Serif 4', serif; font-optical-sizing: auto; font-variation-settings: 'opsz' 48;
-  font-size: 3rem;
+  font-size: 3.5rem;
   color: var(--accent);
   line-height: 1;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 30px rgba(74,158,255,0.2);
 }
 
 .stat-label {
   font-size: 14px;
-  color: var(--muted);
+  color: var(--muted2);
   font-weight: 400;
 }
 
@@ -446,7 +544,7 @@ section {
   gap: 1.5px;
   background: var(--border);
   border: 0.5px solid var(--border);
-  border-radius: 16px;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -466,7 +564,7 @@ section {
 
 .step-img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 0;
   border: 0.5px solid var(--border);
   display: block;
   grid-column: 1;
@@ -507,7 +605,7 @@ section {
   background: var(--accent-dim);
   border: 0.5px solid rgba(74,158,255,0.2);
   padding: 3px 10px;
-  border-radius: 100px;
+  border-radius: 0;
   margin-top: 1rem;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -609,69 +707,80 @@ section {
 /* COMPARISON TABLE */
 .compare-section {
   padding: 7rem 3rem;
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
-.compare-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
   margin-top: 3rem;
-  border-radius: 16px;
-  overflow: hidden;
   border: 0.5px solid var(--border);
 }
 
-.compare-table thead th {
-  background: var(--bg3);
-  padding: 1.25rem 1.5rem;
+.compare-header {
+  padding: 1.5rem 2rem;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted2);
-  text-align: left;
+  letter-spacing: 0.08em;
+  background: var(--bg3);
   border-bottom: 0.5px solid var(--border);
 }
 
-.compare-table thead th:first-child {
+.compare-header:first-child {
   color: var(--muted);
 }
 
-.compare-table thead th.col-brand {
-  color: var(--accent);
+.compare-header.col-brand {
+  color: #0a0a0a;
+  background: var(--accent);
+  border-left: 0.5px solid var(--border);
+  font-weight: 700;
 }
 
-.compare-table thead th.col-agency {
+.compare-header.col-agency {
   color: var(--muted2);
+  border-left: 0.5px solid var(--border);
 }
 
-.compare-table tbody td {
-  padding: 1rem 1.5rem;
-  font-size: 15px;
-  color: var(--text);
+.compare-row-label {
+  padding: 1.25rem 2rem;
+  font-size: 14px;
+  color: var(--muted2);
   background: var(--bg2);
   border-bottom: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
-.compare-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.compare-table tbody td:first-child {
-  color: var(--muted2);
-  font-size: 14px;
-}
-
-.compare-table tbody td.val-good {
-  color: var(--accent);
-  font-weight: 500;
-}
-
-.compare-table tbody td.val-bad {
+.compare-row-label i {
+  font-size: 16px;
   color: var(--muted);
+}
+
+.compare-val {
+  padding: 1.25rem 2rem;
+  font-size: 15px;
+  background: var(--bg2);
+  border-bottom: 0.5px solid var(--border);
+  border-left: 0.5px solid var(--border);
+}
+
+.compare-val.good {
+  color: #ffffff;
+  font-weight: 500;
+  background: rgba(74,158,255,0.08);
+}
+
+.compare-val.bad {
+  color: var(--muted);
+}
+
+.compare-grid > :nth-last-child(-n+3) {
+  border-bottom: none;
 }
 
 /* ADAPTS SECTION */
@@ -691,22 +800,18 @@ section {
 .adapt-card {
   background: var(--bg2);
   border: 0.5px solid var(--border);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 1.25rem 1rem;
   text-align: center;
   transition: border-color 0.2s, background 0.2s;
   cursor: default;
 }
 
-.adapt-card:hover {
-  border-color: var(--border2);
-  background: var(--bg3);
-}
 
 .adapt-icon {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
+  border-radius: 0;
   margin: 0 auto 0.75rem;
   display: flex;
   align-items: center;
@@ -740,18 +845,6 @@ section {
   color: var(--muted);
 }
 
-.adapt-badge {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  background: var(--accent-dim);
-  border: 0.5px solid rgba(74,158,255,0.2);
-  padding: 2px 7px;
-  border-radius: 100px;
-  margin-top: 0.5rem;
-  display: inline-block;
-}
 
 /* CTA SECTION */
 .cta-section {
@@ -861,12 +954,21 @@ footer {
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-floating">
+    <div class="hero-float-img" style="--rot:-12deg"><img src="src/youtube_thumbnail_two_educato_9360b21b44b0aa1e4742875893445b2c.png" alt=""></div>
+    <div class="hero-float-img" style="--rot:8deg"><img src="src/youtube_thumbnail_two_hosts_f_bc69fc758bb761c64069321348a3b201.png" alt=""></div>
+    <div class="hero-float-img" style="--rot:6deg"><img src="src/youtube_thumbnail_two_speaker_feb2b45a3bd27325e3f229605a30c016.png" alt=""></div>
+    <div class="hero-float-img" style="--rot:-9deg"><img src="src/Prompting.png" alt=""></div>
+    <div class="hero-float-img" style="--rot:14deg"><img src="src/3 Directions.png" alt=""></div>
+    <div class="hero-float-img" style="--rot:-5deg"><img src="src/Adapts.png" alt=""></div>
+  </div>
+
   <div class="live-badge">
     <div class="live-dot"></div>
     Team Token Limit Presents
   </div>
 
-  <h1>Idea to <em>Ads,</em> in 2 minutes.</h1>
+  <h1>Idea to Ads,<br><em>in 2 minutes.</em></h1>
 
   <p class="hero-sub">
     Describe your campaign. Adaptify draws from your creative history — what worked, what didn't — and generates on-brand ads built to perform.
@@ -1011,97 +1113,97 @@ footer {
       <div class="adapt-icon ig"><i class="ph-fill ph-instagram-logo"></i></div>
       <div class="adapt-name">Instagram Post</div>
       <div class="adapt-size">1080 × 1080</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon st"><i class="ph-fill ph-instagram-logo"></i></div>
       <div class="adapt-name">Instagram Story</div>
       <div class="adapt-size">1080 × 1920</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon fb"><i class="ph-fill ph-facebook-logo"></i></div>
       <div class="adapt-name">Facebook Ad</div>
       <div class="adapt-size">1200 × 628</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon em"><i class="ph-fill ph-envelope-simple"></i></div>
       <div class="adapt-name">Email Header</div>
       <div class="adapt-size">600 × 300</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon yt"><i class="ph-fill ph-youtube-logo"></i></div>
       <div class="adapt-name">YouTube Banner</div>
       <div class="adapt-size">2560 × 1440</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon li"><i class="ph-fill ph-linkedin-logo"></i></div>
       <div class="adapt-name">LinkedIn Post</div>
       <div class="adapt-size">1200 × 1200</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon li"><i class="ph-fill ph-linkedin-logo"></i></div>
       <div class="adapt-name">LinkedIn Banner</div>
       <div class="adapt-size">1584 × 396</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon tw"><i class="ph-fill ph-x-logo"></i></div>
       <div class="adapt-name">X / Twitter Post</div>
       <div class="adapt-size">1600 × 900</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon tw"><i class="ph-fill ph-x-logo"></i></div>
       <div class="adapt-name">X / Twitter Header</div>
       <div class="adapt-size">1500 × 500</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon pi"><i class="ph-fill ph-pinterest-logo"></i></div>
       <div class="adapt-name">Pinterest Pin</div>
       <div class="adapt-size">1000 × 1500</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon tk"><i class="ph-fill ph-tiktok-logo"></i></div>
       <div class="adapt-name">TikTok Cover</div>
       <div class="adapt-size">1080 × 1920</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon yt"><i class="ph-fill ph-youtube-logo"></i></div>
       <div class="adapt-name">YouTube Thumbnail</div>
       <div class="adapt-size">1280 × 720</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon sn"><i class="ph-fill ph-snapchat-logo"></i></div>
       <div class="adapt-name">Snapchat Ad</div>
       <div class="adapt-size">1080 × 1920</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon wa"><i class="ph-fill ph-whatsapp-logo"></i></div>
       <div class="adapt-name">WhatsApp Status</div>
       <div class="adapt-size">1080 × 1920</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon te"><i class="ph-fill ph-telegram-logo"></i></div>
       <div class="adapt-name">Telegram Post</div>
       <div class="adapt-size">1280 × 720</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
     <div class="adapt-card">
       <div class="adapt-icon th"><i class="ph-fill ph-threads-logo"></i></div>
       <div class="adapt-name">Threads Post</div>
       <div class="adapt-size">1080 × 1080</div>
-      <span class="adapt-badge">Auto</span>
+
     </div>
   </div>
 </div>
@@ -1112,47 +1214,35 @@ footer {
   <h2 class="section-title">Adaptify vs. hiring an agency.</h2>
   <p class="section-sub">Same output. Fraction of the cost. Zero back-and-forth.</p>
 
-  <table class="compare-table">
-    <thead>
-      <tr>
-        <th></th>
-        <th class="col-brand">Adaptify</th>
-        <th class="col-agency">Agency</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Cost per adapt</td>
-        <td class="val-good">$0.07</td>
-        <td class="val-bad">~$6 (₹500)</td>
-      </tr>
-      <tr>
-        <td>Turnaround time</td>
-        <td class="val-good">~2 minutes</td>
-        <td class="val-bad">2–5 days</td>
-      </tr>
-      <tr>
-        <td>Revisions</td>
-        <td class="val-good">Unlimited — regenerate instantly</td>
-        <td class="val-bad">1–2 rounds, then extra charges</td>
-      </tr>
-      <tr>
-        <td>Platform adapts</td>
-        <td class="val-good">16+ formats, one click</td>
-        <td class="val-bad">Each format billed separately</td>
-      </tr>
-      <tr>
-        <td>Brand consistency</td>
-        <td class="val-good">Auto — learns from your history</td>
-        <td class="val-bad">Depends on the designer</td>
-      </tr>
-      <tr>
-        <td>Availability</td>
-        <td class="val-good">24/7, instant</td>
-        <td class="val-bad">Business hours, time zones</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="compare-grid">
+    <div class="compare-header"></div>
+    <div class="compare-header col-brand">Adaptify</div>
+    <div class="compare-header col-agency">Agency</div>
+
+    <div class="compare-row-label"><i class="ph ph-currency-dollar"></i>Cost per adapt</div>
+    <div class="compare-val good">$0.07</div>
+    <div class="compare-val bad">~$6 (₹500)</div>
+
+    <div class="compare-row-label"><i class="ph ph-clock"></i>Turnaround time</div>
+    <div class="compare-val good">~2 minutes</div>
+    <div class="compare-val bad">2–5 days</div>
+
+    <div class="compare-row-label"><i class="ph ph-arrows-clockwise"></i>Revisions</div>
+    <div class="compare-val good">Unlimited — regenerate instantly</div>
+    <div class="compare-val bad">1–2 rounds, then extra charges</div>
+
+    <div class="compare-row-label"><i class="ph ph-devices"></i>Platform adapts</div>
+    <div class="compare-val good">16+ formats, one click</div>
+    <div class="compare-val bad">Each format billed separately</div>
+
+    <div class="compare-row-label"><i class="ph ph-paint-brush"></i>Brand consistency</div>
+    <div class="compare-val good">Auto — learns from your history</div>
+    <div class="compare-val bad">Depends on the designer</div>
+
+    <div class="compare-row-label"><i class="ph ph-lightning"></i>Availability</div>
+    <div class="compare-val good">24/7, instant</div>
+    <div class="compare-val bad">Business hours, time zones</div>
+  </div>
 </div>
 
 <!-- CTA -->
