@@ -1,0 +1,5 @@
+[phases.setup]
+nixPkgs = ["nginx"]
+
+[start]
+cmd = "nginx -c /etc/nginx/nginx.conf && cp -r . /usr/share/nginx/html && nginx -s reload && sleep infinity"
